@@ -36,6 +36,7 @@ const UsercontextProvider=({children})=>{
         catch (err) {
             setError(err.response.data.message)
             if(err.response.data.message === 'invalid email or password') alert(err.response.data.message)
+            else if(err.response.data.message === 'Session expired. Please login again.') alert('please login again')
             else alert('login failed')
             setError()
             

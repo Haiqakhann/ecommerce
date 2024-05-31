@@ -1,4 +1,4 @@
-import React, { useState ,useContext} from 'react'
+import React, { useState ,useContext,useEffect} from 'react'
 import { FaStar } from 'react-icons/fa'
 
 
@@ -17,6 +17,13 @@ const Reviews = () => {
     const [comment,setComment] = useState("")
     const [hover,setHover] = useState(null)
     const [errors,setErrors] = useState()
+
+    useEffect(() => {
+        if (product) {
+            setReviews(product.reviews);
+            setNumOfReviews(product.numOfReviews)
+        }
+        }, [product]);
 
     const onchange=(e)=>{
         setComment(e.target.value)

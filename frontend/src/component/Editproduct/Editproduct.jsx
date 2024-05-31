@@ -29,9 +29,6 @@ const Editproduct = () => {
     
     useEffect(() => {
     if (product) {
-
-
-
         setFormData({
             name: product.name || "",
             description: product.description || "",
@@ -42,9 +39,7 @@ const Editproduct = () => {
             subCategory: product.subCategory || "",
             price: product.price || "",
             variation: "",
-          });
-    
-
+        });
     }
     }, [product]);
 
@@ -63,7 +58,7 @@ const Editproduct = () => {
         const {name,value} = e.target
         setFormData(
             {...formdata ,[name]: value}
-            )
+        )
     
     }
 
@@ -179,8 +174,6 @@ const Editproduct = () => {
             setStock_m("")
             setStock_l("")
             setStock_xl("")
-
-
         }
     }
 
