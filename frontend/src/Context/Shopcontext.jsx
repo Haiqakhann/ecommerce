@@ -6,7 +6,7 @@ const Shopcontext = createContext()
 const ShopcontextProvider=({children})=>{
 
   const allproducts=()=>{
-    fetch('http://localhost:4000/product')
+    fetch(`${process.env.REACT_APP_API_URL}/product`)
     .then((response) => response.json())
     .then((data) => {
         setProducts(data)
@@ -32,7 +32,7 @@ const ShopcontextProvider=({children})=>{
   },[products])
  
   const singleproduct = useCallback((ID) => {
-    fetch(`http://localhost:4000/product/${ID}`)
+    fetch(`${process.env.REACT_APP_API_URL}/product/${ID}`)
       .then((response) => response.json())
       .then((data) => {
         setProduct(data);
@@ -43,7 +43,7 @@ const ShopcontextProvider=({children})=>{
   const addproduct= async(formData)=>{
     try{
       const config = { headers: { 'Content-Type': 'multipart/form-data' },withCredentials :true };
-      await axios.post(`http://localhost:4000/admin/product/new`,formData,config);
+      await axios.post(`${process.env.REACT_APP_API_URL}/admin/product/new`,formData,config);
       alert('product added')    
     }
     catch(err){
@@ -56,7 +56,7 @@ const ShopcontextProvider=({children})=>{
   const updateproduct= async(id,formData)=>{
     try{
       const config = { headers: { 'Content-Type': 'multipart/form-data' },withCredentials :true };
-      await axios.post(`http://localhost:4000/admin/product/${id}`,formData,config);
+      await axios.post(`${process.env.REACT_APP_API_URL}/admin/product/${id}`,formData,config);
       allproducts()
 
       alert('product updated')
@@ -71,7 +71,7 @@ const ShopcontextProvider=({children})=>{
 
   const deleteproduct= async(id)=>{
     try{
-      axios.delete(`http://localhost:4000/admin/product/${id}`,{withCredentials :true})
+      axios.delete(`${process.env.REACT_APP_API_URL}/admin/product/${id}`,{withCredentials :true})
       alert('product deleted')
     }
     catch(err){
@@ -83,7 +83,7 @@ const ShopcontextProvider=({children})=>{
   const addproductreview = async(review)=>{
     try{
       const config = { headers: { "Content-Type": "application/json" },withCredentials :true };
-      await axios.put(`http://localhost:4000/review`,review,config);
+      await axios.put(`${process.env.REACT_APP_API_URL}/review`,review,config);
       alert('product review added')
       allproducts()
     }
@@ -99,7 +99,7 @@ const ShopcontextProvider=({children})=>{
     try{
       const config = { headers: { "Content-Type": "application/json" },withCredentials :true };
 
-      const { data } = await axios.post(`http://localhost:4000/review`,id,config);
+      const { data } = await axios.post(`${process.env.REACT_APP_API_URL}/review`,id,config);
       setSuccess(true)
       setReviews(data)
     }

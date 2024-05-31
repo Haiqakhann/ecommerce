@@ -2,7 +2,6 @@ import React from 'react'
 import Products from '../Products/Products'
 const Latest = () => {
   return (
-    <div>
       <section className="max-padd-container bg-primary p-12 xl:py-28">
         <div>
             <h2 className="h3">
@@ -17,7 +16,6 @@ const Latest = () => {
             </div>
         </div>
     </section>
-    </div>
   )
 }
 

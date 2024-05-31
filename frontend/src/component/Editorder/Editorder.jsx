@@ -79,7 +79,7 @@ const Editorder = () => {
                                     order.orderItems.map((item) => (
                                     <div key={item._id}  className='flexBetween w-[100%] mb-2 '>
                                         <div className='flexCenter'>
-                                            <img src={`http://localhost:4000/images/${item.image}`} height={50} width={50} alt="Product" />
+                                            <img src={`${process.env.REACT_APP_API_URL}/images/${item.image}`} height={50} width={50} alt="Product" />
                                             <Link to={`/product/${item.product}`} className='regular-18 px-4'>
                                             {item.name} 
                                             </Link>

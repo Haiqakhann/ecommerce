@@ -19,7 +19,7 @@ const OrdercontextProvider=({children})=>{
         try {
             const config = { headers: { "Content-Type": "application/json" } ,withCredentials :true };
 
-            const { data } = await axios.post(`http://localhost:4000/order/new`,order,config);
+            const { data } = await axios.post(`${process.env.REACT_APP_API_URL}/order/new`,order,config);
             setOrder(data.order)
             clearCart()
             alert('order placed')
@@ -33,7 +33,7 @@ const OrdercontextProvider=({children})=>{
 
      
   const singleorder = useCallback((ID) => {
-    axios.get(`http://localhost:4000/order/${ID}`,{withCredentials :true})
+    axios.get(`${process.env.REACT_APP_API_URL}/order/${ID}`,{withCredentials :true})
       .then((data) => {
         setOrder(data.data.order);
     })
@@ -44,7 +44,7 @@ const OrdercontextProvider=({children})=>{
 
     const deleteorder= async(id)=>{
         try{
-            axios.delete(`http://localhost:4000/admin/order/${id}`,{withCredentials :true})
+            axios.delete(`${process.env.REACT_APP_API_URL}/admin/order/${id}`,{withCredentials :true})
             alert('order deleted')
             getallorder()
         }
@@ -59,7 +59,7 @@ const OrdercontextProvider=({children})=>{
     const updateorder= async(id,status)=>{
         try{
             const config = { headers: { "Content-Type": "application/json" },withCredentials :true };
-            const { data } = await axios.post(`http://localhost:4000/admin/order/${id.id}`,status,config);
+            const { data } = await axios.post(`${process.env.REACT_APP_API_URL}/admin/order/${id.id}`,status,config);
             alert('order status updated')
         }
         catch(err){
@@ -70,7 +70,7 @@ const OrdercontextProvider=({children})=>{
     }
     
     const getallorder = useCallback(() => {
-        axios.get(`http://localhost:4000/admin/orders`,{
+        axios.get(`${process.env.REACT_APP_API_URL}/admin/orders`,{
             withCredentials :true})
             .then((data) => {
                 setAllorder(data.data.order)

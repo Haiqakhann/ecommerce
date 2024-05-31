@@ -30,7 +30,7 @@ function Hero() {
 
                 {/* button */}
                 <div className="p-2 my-9">
-                   <Link className="btn-dark !py-5 rounded-xl" to="/"> Shop now</Link>
+                   <Link className="btn-dark !py-5 rounded-xl" to="/men"> Shop now</Link>
                 </div>
 
                 {/* related product */}

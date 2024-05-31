@@ -94,7 +94,7 @@ const ProductDetail = () => {
                         <div className='maxx-padd-container flexCenter flex-col gap-8 xl:flex-row py-4'>
                             {/* image */}
                             <div className='pr-2 py-5 max-h-[500px] w-auto flex'>
-                                <img src={`http://localhost:4000/images/${product.image}`} alt='' height={500} width={500} className='rounded-xl bg-gray-10' />
+                                <img src={`${process.env.REACT_APP_API_URL}/images/${product.image}`} alt='' height={500} width={500} className='rounded-xl bg-gray-10' />
                             </div>
                             {/* details */}
                             <div className='flex-col flex xl:flex-[1.5] bg-white py-2 px-6 rounded-xl' >

@@ -5,12 +5,10 @@ const newOrder = async(req,res)=>{
     
     try {
         const {shippingInfo,orderItems,paymentInfo,itemsPrice,taxPrice,shippingPrice,totalPrice}  = req.body
-        console.log(req.body)
         
         req.body.user=req.user._id
         req.body.paidAt=Date.now()
 
-        console.log(req.body)
         const order = await Order.create(
             req.body
         )
@@ -27,9 +25,7 @@ const newOrder = async(req,res)=>{
 
 const singleOrder = async(req,res)=>{
     try {
-        console.log('singleorder')
         const order = await Order.findById(req.params.id).populate("user","name email")
-        console.log(order)
         if(!order) res.status(404).send({ message: "order not found" })
         res.status(201).send({ message: "order created" ,order})
 
@@ -45,7 +41,6 @@ const singleOrder = async(req,res)=>{
 
 const myOrder = async(req,res)=>{
     try {
-        console.log(req.user.id)
         const order = await Order.find({ user: req.user.id })
         res.status(200).send(order)        
 
@@ -74,7 +69,6 @@ const getOrders = async(req, res) => {
 
 const updateOrder = async(req, res) => {
     try {
-        console.log(req.params.id)
         const order= await Order.findById(req.params.id)
 
         if(!order) res.status(404).send({ message: "order not found" })
@@ -125,10 +119,7 @@ async function stockUpdate(id,O_size,O_quantity){
 
 async function deleteOrder(req,res){
     try {
-        console.log('delete controller')
-        console.log(req.params.id)
         const order = await Order.findById(req.params.id)
-        console.log(order)
         if(!order) return res.status(404).send({message:"no order found"})
         await Order.deleteOne({_id:req.params.id})
         res.status(200).send({message : 'order delete successfully'})

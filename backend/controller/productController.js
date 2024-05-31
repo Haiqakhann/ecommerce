@@ -66,9 +66,7 @@ const updateProduct = async(req,res)=>{
         req.body.user = req.user.id
         req.body.image = req.file.filename
         req.body.variation = JSON.parse(variation)
-        console.log(req.body)        
         product = await Product.findByIdAndUpdate(req.params.id,req.body)
-        console.log(product)
         res.status(200).send({
             message:"product updated successfully"
         })
@@ -99,7 +97,6 @@ const deleteProduct = async(req,res)=>{
 
 const getProductDetail = async(req,res)=>{
     try {
-            console.log(req.params.id)
             let product = await Product.findById(req.params.id)
             if(!product) res.status(404).send({ message: "product not found" })
             res.status(200).send(product)
@@ -114,9 +111,7 @@ const getProductDetail = async(req,res)=>{
 
 const addProductReview = async(req,res)=>{
     try {
-        console.log(req.body)
         const {rating,comment,productId} =req.body
-        console.log(rating,comment)
         
         const review = {
             user : req.user._id,
@@ -130,7 +125,6 @@ const addProductReview = async(req,res)=>{
         const isReviewed = product.reviews.filter((review)=>review.user.toString() === req.user._id.toString())
 
         if(isReviewed.length>0){
-            console.log(product.reviews)
             product.reviews.forEach(review => {
                if(review.user.toString() === req.user._id.toString()){
                     review.rating =rating

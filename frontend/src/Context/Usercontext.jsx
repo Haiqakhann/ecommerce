@@ -15,7 +15,7 @@ const UsercontextProvider=({children})=>{
         try {
             const config = { headers: { "Content-Type": "application/json" } ,withCredentials :true };
 
-            const { data } = await axios.post(`http://localhost:4000/register/`,userdata,config);
+            const { data } = await axios.post(`${process.env.REACT_APP_API_URL}/register/`,userdata,config);
             setUser(data.user)
             alert('Registration Successfull')
   
@@ -29,7 +29,7 @@ const UsercontextProvider=({children})=>{
         try {
             const config = { headers: { "Content-Type": "application/json" },withCredentials :true };
 
-            const { data } = await axios.post(`http://localhost:4000/login`,userdata,config);
+            const { data } = await axios.post(`${process.env.REACT_APP_API_URL}/login`,userdata,config);
             setUser(data.user)
             alert('login successful')
         } 
@@ -45,7 +45,7 @@ const UsercontextProvider=({children})=>{
     const logout = async() =>{
         try {
 
-            const { data } = await axios.get(`http://localhost:4000/logout`,{withCredentials :true});
+            const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/logout`,{withCredentials :true});
             console.log(data)
             setUser()
             alert('logout successful')
@@ -60,7 +60,7 @@ const UsercontextProvider=({children})=>{
     }
    
   const getsingleuser = useCallback((ID) => {
-        axios.get(`http://localhost:4000/admin/user/${ID}`,{withCredentials :true})
+        axios.get(`${process.env.REACT_APP_API_URL}/admin/user/${ID}`,{withCredentials :true})
             .then((data) => {
                 setSingleUser(data.data.user);
 
@@ -71,7 +71,7 @@ const UsercontextProvider=({children})=>{
 
     const deleteuser= async(id)=>{
         try{
-            axios.delete(`http://localhost:4000/admin/user/${id}`,{withCredentials :true})
+            axios.delete(`${process.env.REACT_APP_API_URL}/admin/user/${id}`,{withCredentials :true})
             alert('user deleted')
             adminusers()
         
@@ -88,7 +88,7 @@ const UsercontextProvider=({children})=>{
     const updateuser= async(id,role)=>{
         try{
             const config = { headers: { "Content-Type": "application/json" },withCredentials :true };
-            await axios.put(`http://localhost:4000/admin/user/${id.id}`,role,config);
+            await axios.put(`${process.env.REACT_APP_API_URL}/admin/user/${id.id}`,role,config);
             alert('user status updated')
             adminusers()
         }
@@ -99,7 +99,7 @@ const UsercontextProvider=({children})=>{
     }
 
     const adminusers = ()=>{
-        axios.get(`http://localhost:4000/admin/users`,{
+        axios.get(`${process.env.REACT_APP_API_URL}/admin/users`,{
             withCredentials :true})
             .then((data) => {
                 setAllusers(data.data.Users)

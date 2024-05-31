@@ -2,6 +2,7 @@ import {React, useEffect, useState } from "react";
 import { useContext } from "react";
 import axios from "axios";
 
+
 import { BrowserRouter , Route,Routes} from "react-router-dom";
 
 import { Elements } from "@stripe/react-stripe-js";
@@ -41,7 +42,7 @@ function App() {
 
   async function getStripeApiKey() {
     try {
-      const { data } = await axios.get("http://localhost:4000/stripeapikey",{withCredentials :true});
+      const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/stripeapikey`,{withCredentials :true});
       setStripeApiKey(data.stripeApiKey);
       // console.log(stripeApiKey)
     } catch (err) {
@@ -56,7 +57,7 @@ function App() {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const { data } = await axios.get(`http://localhost:4000/me`,{withCredentials :true});
+        const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/me`,{withCredentials :true});
         setUser(data.user);
       } catch (err) {
         const error = err.response        

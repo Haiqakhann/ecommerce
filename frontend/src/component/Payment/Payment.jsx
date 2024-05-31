@@ -44,7 +44,7 @@ const Payment = () => {
             const config = { headers: { "Content-Type": "application/json" },withCredentials :true };
 
 
-            const {data} = await axios.post("http://localhost:4000/payment/process",paymentAmount,config)
+            const {data} = await axios.post(`${process.env.REACT_APP_API_URL}/payment/process`,paymentAmount,config)
             const client_secret = data.client_secret
 
             if(!stripe || !elements) return

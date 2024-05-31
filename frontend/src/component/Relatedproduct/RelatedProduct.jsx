@@ -38,7 +38,7 @@ function RelatedProduct() {
           {products && products.map((item)=>{return(
             <SwiperSlide>
               <Link to={`/${item.category}/${item._id}`} id={item._id} className="flexCenter gap-x-5 bg-white backdrop-blur-md p-4 rounded-xl">
-                <img src={`http://localhost:4000/images/${item.image}`} alt={item.name} height={50} width={50} className="rounded-lg drop-shadow-xl" />
+                <img src={`${process.env.REACT_APP_API_URL}/images/${item.image}`} alt={item.name} height={50} width={50} className="rounded-lg drop-shadow-xl" />
                 <div className="flex flex-col gap-y-1">
                     <h3 className="line-clamp-1 medium-16">
                       {item.name}

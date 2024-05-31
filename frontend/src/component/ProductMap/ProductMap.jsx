@@ -9,7 +9,7 @@ const ProductMap = ({id,image,name,description,price,category}) => {
   return (
     <div className='overflow-hidden p-3 rounded-3xl bg-white ring-1 ring-slate-900/5'>
       <div className='relative flexCenter overflow-hidden transition-all duration-100 rounded-3xl'>
-        <img src={`http://localhost:4000/images/${image}`} alt={`${name}`}  className='w-full block transition-all duration-1000 h-80' />
+        <img src={`${process.env.REACT_APP_API_URL}/images/${image}`} alt={`${name}`}  className='w-full block transition-all duration-1000 h-80' />
       </div>
       <div className='px-5 pt-3'>
         <h3 className='medium-18 line-clamp-1'>{name}</h3>

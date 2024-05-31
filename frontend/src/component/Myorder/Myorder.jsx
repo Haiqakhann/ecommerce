@@ -7,7 +7,7 @@ const Myorder = () => {
     const [orders,setOrders] =useState()
   
     useEffect(()=>{
-        fetch(`http://localhost:4000/myorders`,{
+        fetch(`${process.env.REACT_APP_API_URL}/myorders`,{
             credentials: "include",
         })
         .then((response) => response.json())

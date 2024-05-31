@@ -31,7 +31,6 @@ const loginuser = async(req, res) => {
     
     try {
         const { email, password } = req.body;
-        console.log(req.body)
         if (!email || !password) return res.status(400).json({ 'message': 'email and password are required.' });
         
         const user  =await  User.findOne({email}).select("+password")
@@ -39,7 +38,6 @@ const loginuser = async(req, res) => {
         if(!user) return res.status(401).json({ 'message': 'invalid email or password' });
         const isPasswordMatched = await user.comparePassword(password);
 
-        console.log(isPasswordMatched)
         if(!isPasswordMatched){
             return res.status(401).json({ 'message': 'invalid email or password' });
         }
@@ -153,9 +151,7 @@ const allUser=async(req,res)=>{
 
 const singleUser = async(req,res)=>{
     try {
-        console.log(req.params.id)
         const user = await User.findById(req.params.id);
-        console.log(user)
 
         if(!user)  return res.status(404).send({message:"no user found"})
         res.status(200).send({ message: "order created" ,user})

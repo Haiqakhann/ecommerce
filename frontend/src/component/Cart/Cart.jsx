@@ -44,7 +44,7 @@ const CartC = () => {
                                     cartitems.map((item)=>{
                                         return(
                                             <tr>
-                                                <td  className='p-3'>image</td>
+                                                <td  className='p-3'><img src={`${process.env.REACT_APP_API_URL}/images/${item.image}`} height={50} width={50} alt="Product" /></td>
 
                                                 <td className='p-3'>{item.name}</td>
                                                 <td className='p-3'>{item.price}</td>
